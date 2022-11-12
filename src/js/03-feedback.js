@@ -1,27 +1,27 @@
 'use strict';
 import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
-
+let formData = {
+  email: ' ',
+  message: ' ',
+};
 const handleImputer = event => {
   const {
     elements: { email, message },
   } = event.currentTarget;
 
-  const formData = {
+  formData = {
     email: email.value,
     message: message.value,
   };
   console.log(formData);
-  // localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 
-  savedData(formData);
+  // localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
 
-function savedData (data) {
-  throttle(() => {
-    localStorage.setItem('feedback-form-state', JSON.stringify(data));
-  }, 1000);
-}
+const savedInputTrottle = () => {
+  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+};
 
 const siteReload = () => {
   const {
@@ -55,7 +55,7 @@ const handlerSubmiter = event => {
     const savedInformation = localStorage.getItem('feedback-form-state');
     try {
       const parsedInformation = JSON.parse(savedInformation);
-      console.log(parsedInformation);
+      console.log('Obiekt danych formularza: ', parsedInformation);
       event.currentTarget.reset();
       localStorage.removeItem('feedback-form-state');
     } catch (error) {
@@ -65,6 +65,7 @@ const handlerSubmiter = event => {
   }
 };
 
-form.addEventListener('input',handleImputer);
+form.addEventListener('input', handleImputer);
+form.addEventListener('input', throttle(savedInputTrottle, 2000));
 form.addEventListener('submit', handlerSubmiter);
 window.addEventListener('load', siteReload);
