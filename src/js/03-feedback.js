@@ -66,6 +66,6 @@ const handlerSubmiter = event => {
 };
 
 form.addEventListener('input', handleImputer);
-form.addEventListener('input', throttle(savedInputTrottle, 2000));
+form.addEventListener('input', throttle(savedInputTrottle, 500));
 form.addEventListener('submit', handlerSubmiter);
 window.addEventListener('load', siteReload);
