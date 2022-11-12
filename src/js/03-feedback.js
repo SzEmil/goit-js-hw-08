@@ -5,6 +5,8 @@ let formData = {
   email: ' ',
   message: ' ',
 };
+
+//Funkcja zapisująca dane z formularza do obiektu
 const handleImputer = event => {
   const {
     elements: { email, message },
@@ -18,11 +20,11 @@ const handleImputer = event => {
 
   // localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
-
+//Funkcja do zapiswania obiektu w localStorage
 const savedInputTrottle = () => {
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
-
+//po przeładowaniu strony elementy formularza odbieraja wartosci z localStorage
 const siteReload = () => {
   const {
     elements: { email, message },
@@ -44,6 +46,7 @@ const siteReload = () => {
   }
 };
 
+//Funkcja submit ktora sprawdza zawartosc formularza, pobiera informacje z localstorage i wyświetla je w logu
 const handlerSubmiter = event => {
   event.preventDefault();
   const {
