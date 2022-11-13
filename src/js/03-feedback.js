@@ -1,7 +1,7 @@
 'use strict';
 import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
-const formData = {
+let formData = {
   email: ' ',
   message: ' ',
 };
