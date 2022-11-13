@@ -3,16 +3,16 @@ import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
 
 //tworzenie obiektu na podstawie danych z formularza z odstepem czasowym
-const savedInputTrottle = () => {
+const savedInputTrottle = event => {
   const {
     elements: { email, message },
   } = form;
 
-    formData = {
-      email: email.value,
-      message: message.value,
-    };
-    console.log(formData);
+  formData = {
+    email: email.value,
+    message: message.value,
+  };
+  console.log(formData);
 
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
