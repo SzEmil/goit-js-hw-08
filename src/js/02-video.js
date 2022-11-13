@@ -11,6 +11,12 @@ player.on(
   throttle(data => {
     localStorage.setItem('videoplayer-current-time', data.seconds);
     console.log(data.seconds);
+
+    if (data.duration === data.seconds) {
+      console.log('koniec nagrania');
+      data.seconds = 0;
+      localStorage.setItem('videoplayer-current-time', data.seconds);
+    }
   }, 1000)
 );
 

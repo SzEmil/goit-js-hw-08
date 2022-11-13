@@ -1,27 +1,19 @@
 'use strict';
 import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
-let formData = {
-  email: ' ',
-  message: ' ',
-};
 
-//Funkcja zapisująca dane z formularza do obiektu
-const handleImputer = event => {
+//tworzenie obiektu na podstawie danych z formularza z odstepem czasowym
+const savedInputTrottle = () => {
   const {
     elements: { email, message },
-  } = event.currentTarget;
+  } = form;
 
-  formData = {
-    email: email.value,
-    message: message.value,
-  };
-  console.log(formData);
+    formData = {
+      email: email.value,
+      message: message.value,
+    };
+    console.log(formData);
 
-  // localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-};
-//Funkcja do zapiswania obiektu w localStorage
-const savedInputTrottle = () => {
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
 //po przeładowaniu strony elementy formularza odbieraja wartosci z localStorage
@@ -68,7 +60,6 @@ const handlerSubmiter = event => {
   }
 };
 
-form.addEventListener('input', handleImputer);
 form.addEventListener('input', throttle(savedInputTrottle, 500));
 form.addEventListener('submit', handlerSubmiter);
 window.addEventListener('load', siteReload);

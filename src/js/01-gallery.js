@@ -3,10 +3,9 @@ import { galleryItems } from './gallery-items';
 // Change code below this line
 
 // Opisany w dokumentacji
-import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from 'simplelightbox';
 // Dodatkowy import stylów
-import "simplelightbox/dist/simple-lightbox.min.css";
-
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const galery = document.querySelector('.gallery');
 
@@ -26,12 +25,10 @@ galleryItems.forEach(item => {
 
 var lightbox = new SimpleLightbox('.gallery .gallery__item', {
   /* options */
-  captions: true,
-  captionSelector: 'img',
+
   captionsData: 'alt',
-  captionPosition: 'bottom',
+
   captionDelay: 250,
-  enableKeyboard: true,
 });
 
 lightbox.on('show.simplelightbox', function () {
